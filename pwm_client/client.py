@@ -94,5 +94,7 @@ if __name__ == "__main__":
             print('press d')
             car.setSteer(angle=1)
         elif key == 'q':
+            car.setSteer(angle=0)
+            car.setAccel(accel=0)
             print('press q, bye')
             break
