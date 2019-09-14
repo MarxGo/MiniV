@@ -2,6 +2,7 @@
 
 import keyboard
 
+import math
 import grpc
 import queue
 import threading
@@ -79,7 +80,7 @@ if __name__ == "__main__":
     print('ready ...')
     car = PWMIOClient(addr='127.0.0.1:50051')
     while True:
-        print("press w/s/a/d key to control, q to exit:")
+        print("press w/s/a/d key to control, z/x to reset, q to exit:")
         key = keyboard.readkey()
         if key == 'w':
             print('press w')
@@ -89,10 +90,16 @@ if __name__ == "__main__":
             car.setThrottle(throttle=1)
         elif key == 'a':
             print('press a')
-            car.setSteer(angle=-1)
+            car.setSteer(angle=-1 * math.pi / 4)
         elif key == 'd':
             print('press d')
-            car.setSteer(angle=1)
+            car.setSteer(angle=math.pi / 4)
+        elif key == 'z':
+            print('press z')
+            car.setSteer(angle=0)
+        elif key == 'x':
+            print('press x')
+            car.setAccel(accel=0)
         elif key == 'q':
             car.setSteer(angle=0)
             car.setAccel(accel=0)
